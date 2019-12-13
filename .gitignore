@@ -11,6 +11,10 @@
 # production
 /build
 
+# private api key
+.env
+/src/key.js
+
 # misc
 .DS_Store
 .env

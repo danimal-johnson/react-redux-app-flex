@@ -6,8 +6,9 @@ import {
 // Initial State
 
 const initialState = {
-  city: "Tampa",
-  temp: 87
+  weather: null,
+  isFetching: false,
+  error: ""
 }
 
 // Reducer
@@ -16,13 +17,26 @@ export const weatherReducer = (state=initialState, action) => {
   switch(action.type) {
     case FETCH_WEATHER_START:
       console.log("FETCH START");
-      return state;
+      return {
+        ...state,
+        isFetching: true
+      };
     case FETCH_WEATHER_SUCCESS:
       console.log("FETCH SUCCESS");
-      return state;
+      console.log("Payload:", action.payload);
+      return {
+        ...state,
+        weather: action.payload,
+        isFetching: false,
+        error: ''
+      };
     case FETCH_WEATHER_FAILURE:
       console.log("FETCH FAILURE");
-      return state;
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
     default:
       console.log("DEFAULT");
       return state;
